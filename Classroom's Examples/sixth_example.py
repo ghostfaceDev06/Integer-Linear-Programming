@@ -26,3 +26,5 @@ model.optimize()
 if model.status == GRB.OPTIMAL:
     print(f'Optimal objective Value: {model.ObjVal}')
     print(f'Solve: x0 = {x1.X} \t x1 = {x2.X} \t x2 = {x3.X} \t x3 = {x4.X} ')
+
+#This code use branch-bound
