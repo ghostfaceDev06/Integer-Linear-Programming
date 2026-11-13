@@ -31,9 +31,9 @@ The codes in this repository were developed during practical classes to solve op
 
 - Assignment Problem
 - Knapsack Problem
-- Set Covering Problem
-- Graph Covering
-- Other examples developed during classes
+- Minimum Cost Flow Problem
+- Branch and Bound
+
 
 ---
 
