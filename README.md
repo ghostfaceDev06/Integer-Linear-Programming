@@ -20,9 +20,8 @@ This repository was created for learning and practicing Integer Linear Optimizat
 
 - Assignment Problem
 - Knapsack Problem
-- Set Covering Problem
-- Graph Covering
-- Graph Optimization
+- Minimum Cost Flow Problem
+- Branch and Bound
 
 ---
 
