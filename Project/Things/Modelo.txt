@@ -1,0 +1,44 @@
+CONJUNTOS E ÍNDICES
+J1 = sem rebrota (Blue Jazz, Cauliflower, Garlic, Kale,
+     Parsnip, Potato, Tulip, Unmilled Rice)
+J2 = com rebrota (Green Bean, Strawberry)
+J  = J1 ∪ J2
+s, t ∈ {1, ..., 28}   (s = dia do plantio, t = dia da restrição)
+
+PARÂMETROS
+Custo_j, PrecoVenda_j, C_j (dias p/ crescer), R_j (rebrota, só J2)
+Col(j,s,t) = nº de colheitas de j (J2) plantada em s até o dia t
+   = 0                           se t < s + C_j
+   = 1 + floor((t-s-C_j)/R_j)    se t >= s + C_j
+H(j,s) = Col(j,s,28)
+
+VARIÁVEL
+x_js ∈ Z+ : sementes de j plantadas no dia s
+
+FUNÇÃO OBJETIVO
+Receita = Σ_{j∈J1} Σ_{s: s+C_j<=28} PrecoVenda_j · x_js
+        + Σ_{j∈J2} Σ_{s: s+C_j<=28} PrecoVenda_j · H(j,s) · x_js
+Despesa = Σ_j Σ_s Custo_j · x_js
+Max Z = Receita − Despesa
+
+RESTRIÇÕES (para cada t = 1, ..., 28)
+
+(1) Capital
+500 + Σ_{j∈J1} Σ_{s: s+C_j<=t} PrecoVenda_j · x_js
+    + Σ_{j∈J2} Σ_{s<=t} PrecoVenda_j · Col(j,s,t) · x_js
+    − Σ_j Σ_{s<=t} Custo_j · x_js  >= 0
+
+(2) Energia
+2 · Σ_j x_jt
++ 2 · Σ_{j∈J1} Σ_{s: s<=t<s+C_j} x_js
++ 2 · Σ_{j∈J2} Σ_{s<=t} x_js  <= 270
+
+(3) Espaço
+Σ_{j∈J1} Σ_{s: s<=t<s+C_j} x_js
++ Σ_{j∈J2} Σ_{s<=t} x_js  <= 40
+
+(4) Disponibilidade do morango
+x_{Strawberry,s} = 0   para s < 13
+
+(5) Domínio
+x_js ∈ Z+
