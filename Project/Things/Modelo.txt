@@ -31,7 +31,7 @@ RESTRIÇÕES (para cada t = 1, ..., 28)
 (2) Energia
 2 · Σ_j x_jt
 + 2 · Σ_{j∈J1} Σ_{s: s<=t<s+C_j} x_js
-+ 2 · Σ_{j∈J2} Σ_{s<=t} x_js  <= 270
++ 2 · Σ_{j∈J2} Σ_{s<=t} x_js  <= 100
 
 (3) Espaço
 Σ_{j∈J1} Σ_{s: s<=t<s+C_j} x_js
