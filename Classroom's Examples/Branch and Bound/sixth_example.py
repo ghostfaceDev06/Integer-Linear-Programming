@@ -5,10 +5,10 @@ from gurobipy import GRB
 model = gb.Model('Sixth Example')
 
 #Add the variables
-x1 = model.addVar(vtype=GRB.CONTINUOUS,name='x0',lb=2)
-x2 = model.addVar(vtype=GRB.CONTINUOUS,name='x1',lb=0,ub=1)
-x3 = model.addVar(vtype=GRB.CONTINUOUS,name='x1',lb=1)
-x4 = model.addVar(vtype=GRB.CONTINUOUS,name='x2',lb=0)
+x1 = model.addVar(lb=0,ub=3,vtype=GRB.CONTINUOUS,name='x1')
+x2 = model.addVar(lb=0,ub=3,vtype=GRB.CONTINUOUS,name='x2')
+x3 = model.addVar(lb=0,ub=3,vtype=GRB.CONTINUOUS,name='x3')
+x4 = model.addVar(lb=0,ub=3,vtype=GRB.CONTINUOUS,name='x4')
 
 #Defining Objective Function
 model.setObjective(5*x1 + 6*x2 + 5*x3 + 6*x4, GRB.MAXIMIZE)
@@ -25,6 +25,6 @@ model.optimize()
 #Print values 
 if model.status == GRB.OPTIMAL:
     print(f'Optimal objective Value: {model.ObjVal}')
-    print(f'Solve: x0 = {x1.X} \t x1 = {x2.X} \t x2 = {x3.X} \t x3 = {x4.X} ')
+    print(f'Solve: x1 = {x1.X} \t x2 = {x2.X} \t x3 = {x3.X} \t x4 = {x4.X} ')
 
 #This code use branch-bound
