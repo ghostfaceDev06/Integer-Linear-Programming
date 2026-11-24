@@ -17,7 +17,7 @@ n = len(A[0]) #Dimension of Matrix
 
 #Creating Model
 branch_and_bound_model = gb.Model("Branch and Bound")
-x = branch_and_bound_model.addVars(n,vtype=GRB.INTEGER,lb=0) #Integer variables: optimize() runs the branch and bound
+x = branch_and_bound_model.addVars(n,vtype=GRB.INTEGER,lb=0,ub=3) #Integer variables: optimize() runs the branch and bound
 for k in range(len(b)):
     branch_and_bound_model.addConstr(gb.quicksum(A[k][i]*x[i] for i in range(n)) <= b[k])
 branch_and_bound_model.setObjective(gb.quicksum(costs[i]*x[i] for i in range(n)),GRB.MAXIMIZE)
@@ -32,4 +32,7 @@ if branch_and_bound_model.status == GRB.OPTIMAL:
 #With relaxation
 relaxed = branch_and_bound_model.relax()
 relaxed.optimize()
-print(f'With Relaxation the Optimal value is {relaxed.ObjVal}')
+if relaxed.status == GRB.OPTIMAL:
+    print(f'With Relaxation the Optimal value is {relaxed.ObjVal}')
+    for r in relaxed.getVars():
+        print(f'{r.VarName} = {r.X}')
